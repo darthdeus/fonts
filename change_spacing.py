@@ -11,12 +11,10 @@ new_unique_id = "Fantasquecompact; 2024; Jakub Arnold"
 font.appendSFNTName('English (US)', 'UniqueID', new_unique_id)
 font.version = "0.1.0"
 
-ratio = 0.9
-
+# Reduce the letter spacing by 10%
 for glyph in font.glyphs():
-    glyph.left_side_bearing = int(ratio * float(glyph.left_side_bearing))
-    glyph.right_side_bearing = int(ratio * float(glyph.right_side_bearing))
-
+    if glyph.isWorthOutputting():
+        glyph.width = int(glyph.width * 0.9)
 
 font.generate('out/FantasqueCompact-Regular.ttf')
 font.close()
